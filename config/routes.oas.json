@@ -1,7 +1,7 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "Todo List API",
+    "title": "Todo List API Example",
     "description": "Example API, built using [Zuplo](https://zuplo.com/), for managing tasks within a todo list. You can find the source code for this example [here](https://github.com/zuplo/samples-todo-list-open-api).",
     "version": "1.0.0"
   },
