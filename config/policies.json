@@ -1,0 +1,94 @@
+{
+  "policies": [
+    {
+      "handler": {
+        "export": "default",
+        "module": "$import(./modules/remove-user-id)"
+      },
+      "name": "remove-user-id",
+      "policyType": "custom-code-outbound"
+    },
+    {
+      "handler": {
+        "export": "RequestValidationInboundPolicy",
+        "module": "$import(@zuplo/runtime)",
+        "options": {
+          "includeRequestInLogs": false,
+          "logLevel": "info",
+          "validateBody": "reject-and-log",
+          "validatePathParameters": "log-only",
+          "validateQueryParameters": "log-only"
+        }
+      },
+      "name": "insert-todo-request-validation-inbound",
+      "policyType": "request-validation-inbound"
+    },
+    {
+      "handler": {
+        "export": "RequestValidationInboundPolicy",
+        "module": "$import(@zuplo/runtime)",
+        "options": {
+          "includeRequestInLogs": false,
+          "logLevel": "info",
+          "validateBody": "reject-and-log",
+          "validatePathParameters": "reject-and-log",
+          "validateQueryParameters": "log-only"
+        }
+      },
+      "name": "update-todo-request-validation-inbound",
+      "policyType": "request-validation-inbound"
+    },
+    {
+      "handler": {
+        "export": "RequestValidationInboundPolicy",
+        "module": "$import(@zuplo/runtime)",
+        "options": {
+          "includeRequestInLogs": false,
+          "logLevel": "info",
+          "validateBody": "none",
+          "validatePathParameters": "reject-and-log",
+          "validateQueryParameters": "log-only"
+        }
+      },
+      "name": "delete-todo-request-validation-inbound",
+      "policyType": "request-validation-inbound"
+    },
+    {
+      "handler": {
+        "export": "ApiKeyInboundPolicy",
+        "module": "$import(@zuplo/runtime)",
+        "options": {
+          "allowUnauthenticatedRequests": false,
+          "cacheTtlSeconds": 60
+        }
+      },
+      "name": "api-key-inbound",
+      "policyType": "api-key-inbound"
+    },
+    {
+      "handler": {
+        "export": "default",
+        "module": "$import(./modules/authz)",
+        "options": {
+          "config1": "YOUR_VALUE",
+          "config2": true
+        }
+      },
+      "name": "custom-code-inbound",
+      "policyType": "custom-code-inbound"
+    },
+    {
+      "handler": {
+        "export": "AxiomaticsAuthZInboundPolicy",
+        "module": "$import(@zuplo/runtime)",
+        "options": {
+          "pdpPassword": "$env(PDP_PASSWORD)",
+          "pdpUrl": "https://pdp.example.com",
+          "pdpUsername": "pdp-user"
+        }
+      },
+      "name": "axiomatics-authz-inbound",
+      "policyType": "axiomatics-authz-inbound"
+    }
+  ]
+}
